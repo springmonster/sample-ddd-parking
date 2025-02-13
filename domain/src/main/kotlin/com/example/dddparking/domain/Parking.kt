@@ -4,6 +4,7 @@ import java.time.Duration
 import java.time.LocalDateTime
 
 // 聚合
+// 实体
 interface Parking {
     fun handle(eventQueue: EventQueue, command: CheckInCommand): Boolean
     fun calculateFeeNow(now: LocalDateTime): Int
@@ -12,6 +13,7 @@ interface Parking {
 }
 
 class ParkingImpl(
+    // 值对象
     private val id: Plate,
     private var checkInTime: LocalDateTime?,
     private var lastPlayTime: LocalDateTime?,

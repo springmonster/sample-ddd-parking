@@ -2,6 +2,7 @@ package com.example.dddparking.domain
 
 import org.springframework.stereotype.Component
 
+// 领域服务
 @Component
 class AlarmPolicy(
     private val alarmService: AlarmService
