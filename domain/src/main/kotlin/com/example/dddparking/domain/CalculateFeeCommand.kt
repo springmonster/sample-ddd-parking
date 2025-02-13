@@ -3,6 +3,7 @@ package com.example.dddparking.domain
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
+// 计算费用命令
 class CalculateFeeCommand(
     val plate: Plate,
     val time: LocalDateTime

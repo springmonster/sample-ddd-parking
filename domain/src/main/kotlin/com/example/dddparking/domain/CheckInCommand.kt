@@ -3,6 +3,7 @@ package com.example.dddparking.domain
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
+// 入场命令
 class CheckInCommand(
     val plate: Plate,
     val checkInTime: LocalDateTime

@@ -3,6 +3,7 @@ package com.example.dddparking.domain
 import java.time.Duration
 import java.time.LocalDateTime
 
+// 聚合
 interface Parking {
     fun handle(eventQueue: EventQueue, command: CheckInCommand): Boolean
     fun calculateFeeNow(now: LocalDateTime): Int
@@ -15,7 +16,7 @@ class ParkingImpl(
     private var checkInTime: LocalDateTime?,
     private var lastPlayTime: LocalDateTime?,
     private var totalPaid: Int = 0
-): Parking {
+) : Parking {
     override fun handle(eventQueue: EventQueue, command: CheckInCommand): Boolean {
         if (inPark()) {
             eventQueue.enqueue(CheckInFailedEvent(id, command.checkInTime))
@@ -50,7 +51,7 @@ class ParkingImpl(
 
         this.checkInTime = null
         this.totalPaid = 0
-        this.lastPlayTime= null
+        this.lastPlayTime = null
 
         eventQueue.enqueue(CheckedOutEvent(plate = id, time = command.time))
         return true

@@ -3,6 +3,7 @@ package com.example.dddparking.domain
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
+// 计费命令
 class NotifyPayCommand(
     val plate: Plate,
     val amount: Int,
