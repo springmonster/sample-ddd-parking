@@ -3,8 +3,8 @@ package com.example.dddparking.domain
 import java.time.Duration
 import java.time.LocalDateTime
 
-// 聚合
-// 实体
+// kuanghc 聚合
+// kuanghc 实体
 interface Parking {
     fun handle(eventQueue: EventQueue, command: CheckInCommand): Boolean
     fun calculateFeeNow(now: LocalDateTime): Int

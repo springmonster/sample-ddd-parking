@@ -92,30 +92,44 @@ class ParkingImplTest {
 
         // 付钱 1块
         val eventQueue1 = TestEventQueue()
-        target.handle(eventQueue1, NotifyPayCommand(
-            plate = plate,
-            payTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
-            amount = 1
-        ))
+        target.handle(
+            eventQueue1, NotifyPayCommand(
+                plate = plate,
+                payTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
+                amount = 1
+            )
+        )
 
         // 超时15分钟，离场失败
         val eventQueue2 = TestEventQueue()
-        assertFalse(target.handle(eventQueue2, CheckOutCommand(plate = plate, time = LocalDateTime.of(2023, 11, 26, 11, 1, 0) )))
+        assertFalse(
+            target.handle(
+                eventQueue2,
+                CheckOutCommand(plate = plate, time = LocalDateTime.of(2023, 11, 26, 11, 1, 0))
+            )
+        )
 
         // 查询应付1块
         assertEquals(1, target.calculateFeeNow(LocalDateTime.of(2023, 11, 26, 11, 1, 0)))
 
         // 付款1块
         val eventQueue3 = TestEventQueue()
-        target.handle(eventQueue3, NotifyPayCommand(
-            plate = plate,
-            payTime = LocalDateTime.of(2023, 11, 26, 11, 2, 0),
-            amount = 1
-        ))
+        target.handle(
+            eventQueue3, NotifyPayCommand(
+                plate = plate,
+                payTime = LocalDateTime.of(2023, 11, 26, 11, 2, 0),
+                amount = 1
+            )
+        )
 
         // 出场成功
         val eventQueue4 = TestEventQueue()
-        assertTrue(target.handle(eventQueue4, CheckOutCommand(plate = plate, time = LocalDateTime.of(2023, 11, 26, 11, 3, 0) )))
+        assertTrue(
+            target.handle(
+                eventQueue4,
+                CheckOutCommand(plate = plate, time = LocalDateTime.of(2023, 11, 26, 11, 3, 0))
+            )
+        )
     }
 
     @Test
@@ -140,15 +154,22 @@ class ParkingImplTest {
 
         // 付钱 1块
         val eventQueue1 = TestEventQueue()
-        target.handle(eventQueue1, NotifyPayCommand(
-            plate = plate,
-            payTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
-            amount = 1
-        ))
+        target.handle(
+            eventQueue1, NotifyPayCommand(
+                plate = plate,
+                payTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
+                amount = 1
+            )
+        )
 
         // 出场成功
         val eventQueue2 = TestEventQueue()
-        assertTrue(target.handle(eventQueue2, CheckOutCommand(plate = plate, time = LocalDateTime.of(2023, 11, 26, 10, 31, 0) )))
+        assertTrue(
+            target.handle(
+                eventQueue2,
+                CheckOutCommand(plate = plate, time = LocalDateTime.of(2023, 11, 26, 10, 31, 0))
+            )
+        )
         assertFalse(target.inPark())
         assertEquals(1, eventQueue2.list.size)
         assertTrue(eventQueue2.list[0] is CheckedOutEvent)
