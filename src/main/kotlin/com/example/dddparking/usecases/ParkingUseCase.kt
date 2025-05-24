@@ -2,8 +2,7 @@ package com.example.dddparking.usecases
 
 import com.example.dddparking.domain.valueobj.Plate
 
-interface ParkingUsecase {
+interface ParkingUseCase {
     fun checkIn(plate: Plate)
     fun checkOut(plate: Plate)
-    fun calculateFee(plate: Plate)
 }

@@ -8,25 +8,25 @@ import java.time.LocalDateTime
 // 如果是六边形
 // 这里其实是port，具体由adapter实现
 class ParkingOutputMemoryAdapter : ParkingOutputPort {
-    private val parkings = mutableMapOf<Plate, Parking>()
+    private val parkings = mutableMapOf<String, Parking>()
 
     //  init parkings, add some data
     init {
-        parkings[Plate("A")] = ParkingImpl(
-            Plate("A"), LocalDateTime.now().minusDays(2), null, 0
+        parkings["A"] = ParkingImpl(
+            Plate("A"), null, null, 0
         )
 
-        parkings[Plate("B")] = ParkingImpl(
-            Plate("B"), LocalDateTime.now().minusDays(2), LocalDateTime.now().minusDays(1), 100
+        parkings["B"] = ParkingImpl(
+            Plate("B"), null, null, 0
         )
     }
 
     override fun findByIdOrError(plate: Plate): Parking {
-        return parkings[plate] ?: throw Exception("not found")
+        return parkings[plate.value] ?: throw Exception("not found")
     }
 
     override fun save(parking: Parking) {
-        parkings[parking.getPlate()] = parking
+        parkings[parking.getPlate().value] = parking
     }
 }
 
