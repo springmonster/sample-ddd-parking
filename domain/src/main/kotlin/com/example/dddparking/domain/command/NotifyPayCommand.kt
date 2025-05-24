@@ -1,7 +1,7 @@
 package com.example.dddparking.domain.command
 
 import com.example.dddparking.domain.event.EventQueue
-import com.example.dddparking.domain.ParkingRepository
+import com.example.dddparking.domain.ParkingOutputPort
 import com.example.dddparking.domain.valueobj.Plate
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
@@ -15,13 +15,13 @@ class NotifyPayCommand(
 
 @Component
 class NotifyPayCommandHandler(
-    private val parkingRepository: ParkingRepository
+    private val parkingOutputPort: ParkingOutputPort
 ) {
 
     fun handle(eventQueue: EventQueue, command: NotifyPayCommand) {
-        val parking = parkingRepository.findByIdOrError(command.plate)
+        val parking = parkingOutputPort.findByIdOrError(command.plate)
         parking.handle(eventQueue, command)
-        parkingRepository.save(parking)
+        parkingOutputPort.save(parking)
     }
 
 }

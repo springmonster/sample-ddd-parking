@@ -15,7 +15,7 @@ class ParkingImplTest {
     @Test
     fun test_case0() {
         try {
-            ParkingImpl(id = Plate("p1"), checkInTime = null, lastPlayTime = null).calculateFeeNow(LocalDateTime.now())
+            ParkingImpl(plateAsId = Plate("p1"), checkInTime = null, lastPayTime = null).calculateFeeNow(LocalDateTime.now())
             fail()
         } catch (e: DomainException) {
             assertEquals("车辆尚未入场", e.message)
@@ -25,9 +25,9 @@ class ParkingImplTest {
     @Test
     fun test_case1() {
         val result = ParkingImpl(
-            id = Plate("p1"),
+            plateAsId = Plate("p1"),
             checkInTime = LocalDateTime.of(2023, 11, 26, 10, 0, 0),
-            lastPlayTime = null
+            lastPayTime = null
         ).calculateFeeNow(LocalDateTime.of(2023, 11, 26, 10, 59, 59))
         assertEquals(1, result)
     }
@@ -35,9 +35,9 @@ class ParkingImplTest {
     @Test
     fun test_case2() {
         val result = ParkingImpl(
-            id = Plate("p1"),
+            plateAsId = Plate("p1"),
             checkInTime = LocalDateTime.of(2023, 11, 26, 10, 0, 0),
-            lastPlayTime = null
+            lastPayTime = null
         ).calculateFeeNow(LocalDateTime.of(2023, 11, 26, 11, 59, 59))
         assertEquals(2, result)
     }
@@ -45,9 +45,9 @@ class ParkingImplTest {
     @Test
     fun test_case3() {
         val result = ParkingImpl(
-            id = Plate("p1"),
+            plateAsId = Plate("p1"),
             checkInTime = LocalDateTime.of(2023, 11, 26, 10, 0, 0),
-            lastPlayTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
+            lastPayTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
             totalPaid = 1
         ).calculateFeeNow(LocalDateTime.of(2023, 11, 26, 10, 44, 59))
         assertEquals(0, result)
@@ -56,9 +56,9 @@ class ParkingImplTest {
     @Test
     fun test_case4() {
         val result = ParkingImpl(
-            id = Plate("p1"),
+            plateAsId = Plate("p1"),
             checkInTime = LocalDateTime.of(2023, 11, 26, 10, 0, 0),
-            lastPlayTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
+            lastPayTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
             totalPaid = 1
         ).calculateFeeNow(LocalDateTime.of(2023, 11, 26, 10, 46, 59))
         assertEquals(0, result)
@@ -67,9 +67,9 @@ class ParkingImplTest {
     @Test
     fun test_case5() {
         val result = ParkingImpl(
-            id = Plate("p1"),
+            plateAsId = Plate("p1"),
             checkInTime = LocalDateTime.of(2023, 11, 26, 10, 0, 0),
-            lastPlayTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
+            lastPayTime = LocalDateTime.of(2023, 11, 26, 10, 30, 0),
             totalPaid = 1
         ).calculateFeeNow(LocalDateTime.of(2023, 11, 26, 11, 31, 59))
         assertEquals(1, result)
@@ -80,9 +80,9 @@ class ParkingImplTest {
         val plate = Plate("p1")
         //未入场
         val target = ParkingImpl(
-            id = plate,
+            plateAsId = plate,
             checkInTime = null,
-            lastPlayTime = null,
+            lastPayTime = null,
             totalPaid = 0
         )
         assertFalse(target.inPark())
@@ -145,9 +145,9 @@ class ParkingImplTest {
         val plate = Plate("p1")
         //未入场
         val target = ParkingImpl(
-            id = plate,
+            plateAsId = plate,
             checkInTime = null,
-            lastPlayTime = null,
+            lastPayTime = null,
             totalPaid = 0
         )
         assertFalse(target.inPark())

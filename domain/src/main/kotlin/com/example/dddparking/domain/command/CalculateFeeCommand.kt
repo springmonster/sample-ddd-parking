@@ -1,6 +1,6 @@
 package com.example.dddparking.domain.command
 
-import com.example.dddparking.domain.ParkingRepository
+import com.example.dddparking.domain.ParkingOutputPort
 import com.example.dddparking.domain.valueobj.Plate
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
@@ -13,10 +13,10 @@ class CalculateFeeCommand(
 
 @Component
 class CalculateFeeCommandHandler(
-    private val parkingRepository: ParkingRepository
+    private val parkingOutputPort: ParkingOutputPort
 ) {
     fun handle(command: CalculateFeeCommand): Int {
-        val parking = this.parkingRepository.findByIdOrError(command.plate)
+        val parking = this.parkingOutputPort.findByIdOrError(command.plate)
         return parking.calculateFeeNow(command.time)
     }
 }

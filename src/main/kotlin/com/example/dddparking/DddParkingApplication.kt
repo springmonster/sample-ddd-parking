@@ -1,11 +1,11 @@
 package com.example.dddparking
 
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
+import com.example.dddparking.adapters.ParkingInputAdapter
 
-@SpringBootApplication
+//@SpringBootApplication
 class DddParkingApplication
 
 fun main(args: Array<String>) {
-    runApplication<DddParkingApplication>(*args)
+//    runApplication<DddParkingApplication>(*args)
+    val parkingUsecase = ParkingInputAdapter()
 }
