@@ -1,5 +1,12 @@
 package com.example.dddparking.domain
 
+import com.example.dddparking.domain.aggregate.ParkingImpl
+import com.example.dddparking.domain.command.CheckInCommand
+import com.example.dddparking.domain.command.CheckOutCommand
+import com.example.dddparking.domain.command.NotifyPayCommand
+import com.example.dddparking.domain.event.CheckedInEvent
+import com.example.dddparking.domain.event.CheckedOutEvent
+import com.example.dddparking.domain.valueobj.Plate
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime

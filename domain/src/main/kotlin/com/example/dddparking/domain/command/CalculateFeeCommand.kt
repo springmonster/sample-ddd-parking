@@ -1,5 +1,7 @@
-package com.example.dddparking.domain
+package com.example.dddparking.domain.command
 
+import com.example.dddparking.domain.ParkingRepository
+import com.example.dddparking.domain.valueobj.Plate
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 

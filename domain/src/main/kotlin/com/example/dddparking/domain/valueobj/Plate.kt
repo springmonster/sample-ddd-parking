@@ -1,4 +1,4 @@
-package com.example.dddparking.domain
+package com.example.dddparking.domain.valueobj
 
 // 车牌？
 // license plate
