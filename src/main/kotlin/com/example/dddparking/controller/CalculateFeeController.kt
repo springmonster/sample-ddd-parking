@@ -23,9 +23,9 @@ class CalculateFeeController(
             ))
         }
     }
-
-    class ShouldPayReq (
-        val plate: String,
-        val time: String
-    )
 }
+
+class ShouldPayReq(
+    val plate: String,
+    val time: String
+)

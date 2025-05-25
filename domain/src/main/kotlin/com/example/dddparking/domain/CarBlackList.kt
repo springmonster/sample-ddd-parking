@@ -3,7 +3,7 @@ package com.example.dddparking.domain
 interface CarBlackList {
     fun isBaned(): Boolean
     fun add(eventQueue: EventQueue, addCarToBlackListCommand: AddCarToBlackListCommand)
-    fun remove(eventQueue: EventQueue, removeFromBlackListEvent: RemoveCarFromBlackListCommand)
+    fun remove(eventQueue: EventQueue, removeCarFromBlackListCommand: RemoveCarFromBlackListCommand)
 }
 
 class CarBlackListImpl(
