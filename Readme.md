@@ -1,5 +1,9 @@
 # How to Start
 
+## 图
+
+![img.png](img.png)
+
 ## Fix
 
 add below code
